@@ -1,20 +1,29 @@
 'use client'
 import AdminAboutView from '@/components/admin-view/about';
-import AdminHomeView from './../../components/admin-view/home/index';
+import AdminHomeView from '@/components/admin-view/home';
 import AdminEducationView from '@/components/admin-view/education';
 import AdminExperienceView from '@/components/admin-view/experience';
 import AdminProjectView from '@/components/admin-view/project';
 import AdminContactView from '@/components/admin-view/contact';
 import { useState } from 'react';
 
+const initializeHomeFormData = {
+    heading: "",
+    summary: ""
+}
+
 export default function AdminView(){
 
     const [currentSelectedTab, setCurrentSelectedTab] = useState('home');
+    const [homeViewFormData, setHomeViewFromData] = useState(initializeHomeFormData);
     const menuItem = [
         {
             id: 'home',
             label: 'Home',
-            component: <AdminHomeView />
+            component: <AdminHomeView 
+                formData = {homeViewFormData}
+                setFormData = {setHomeViewFromData}
+            />
         },
         {
             id: 'about',

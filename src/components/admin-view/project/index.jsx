@@ -1,4 +1,4 @@
 'use client'
-export default function adminProjectView(){
+export default function AdminProjectView(){
     return <div>Admin project view</div>
 }

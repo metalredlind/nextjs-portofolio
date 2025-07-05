@@ -1,4 +1,4 @@
 'use client'
-export default function adminExperienceView(){
+export default function AdminExperienceView(){
     return <div>Admin experience view</div>
 }

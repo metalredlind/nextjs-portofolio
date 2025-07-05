@@ -1,4 +1,4 @@
 'use client'
-export default function adminAboutView(){
+export default function AdminAboutView(){
     return <div>Admin about view</div>
 }

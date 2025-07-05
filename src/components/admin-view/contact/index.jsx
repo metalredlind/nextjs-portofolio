@@ -1,4 +1,4 @@
 'use client'
-export default function adminContactView(){
+export default function AdminContactView(){
     return <div>Admin contact view</div>
 }

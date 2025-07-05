@@ -1,43 +1,45 @@
 'use client'
-import adminHomeView from './../../components/admin-view/home/index';
-import adminAboutView from './../../components/admin-view/about/index';
-import adminContactView from './../../components/admin-view/contact/index';
-import adminEducationView from './../../components/admin-view/education/index';
-import adminExperienceView from './../../components/admin-view/experience/index';
-import adminProjectView from './../../components/admin-view/project/index';
+import AdminAboutView from '@/components/admin-view/about';
+import AdminHomeView from './../../components/admin-view/home/index';
+import AdminEducationView from '@/components/admin-view/education';
+import AdminExperienceView from '@/components/admin-view/experience';
+import AdminProjectView from '@/components/admin-view/project';
+import AdminContactView from '@/components/admin-view/contact';
+import { useState } from 'react';
 
-export default function adminView(){
+export default function AdminView(){
 
+    const [currentSelectedTab, setCurrentSelectedTab] = useState('home');
     const menuItem = [
         {
             id: 'home',
             label: 'Home',
-            component: <adminHomeView />
+            component: <AdminHomeView />
         },
         {
             id: 'about',
             label: 'About',
-            component: <adminAboutView />
+            component: <AdminAboutView />
         },
         {
             id: 'education',
             label: 'Education',
-            component: <adminEducationView />
+            component: <AdminEducationView />
         },
         {
             id: 'experience',
             label: 'Experience',
-            component: <adminExperienceView />
+            component: <AdminExperienceView />
         },
         {
             id: 'project',
             label: 'Project',
-            component: <adminProjectView />
+            component: <AdminProjectView />
         },
         {
             id: 'contact',
             label: 'Contact',
-            component: <adminContactView />
+            component: <AdminContactView />
         }
         
     ]
@@ -50,13 +52,18 @@ export default function adminView(){
                     key={item.id}
                     type="button"
                     className='p-4 font-bold text-xl text-black'
+                    onClick={()=>{
+                        setCurrentSelectedTab(item.id);
+                    }}
                     >
                         {item.label}
                     </button>
                 ))}
             </nav>
             <div className='mt-10 p-10'>
-
+                {
+                    menuItem.map(item => item.id === currentSelectedTab && item.component)
+                }
             </div>
         </div>
     )

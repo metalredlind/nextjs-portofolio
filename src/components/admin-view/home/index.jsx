@@ -1,4 +1,4 @@
 'use client'
-export default function adminHomeView(){
+export default function AdminHomeView(){
     return <div>Admin home view</div>
 }

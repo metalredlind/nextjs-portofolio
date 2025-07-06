@@ -10,12 +10,45 @@ import { useState } from 'react';
 const initializeHomeFormData = {
     heading: "",
     summary: ""
-}
+};
+
+const initializeAboutFormData = {
+    aboutme: "",
+    noofprojects: "",
+    yearofexperience: "",
+    noofclients: "",
+    skills: ""
+};
+
+const initializeExperienceFormData = {
+    position: "",
+    company: "",
+    duration: "",
+    location: "",
+    jobprofile: ""
+};
+
+const initializeEducationFormData = {
+    degree: "",
+    year: "",
+    college: ""
+};
+
+const initializeProjectFormData = {
+    name: "",
+    website: "",
+    technologies: "",
+    github: ""
+};
 
 export default function AdminView(){
 
     const [currentSelectedTab, setCurrentSelectedTab] = useState('home');
     const [homeViewFormData, setHomeViewFromData] = useState(initializeHomeFormData);
+    const [aboutViewFormData, setAboutViewFromData] = useState(initializeAboutFormData);
+    const [experienceViewFormData, setExperienceViewFromData] = useState(initializeExperienceFormData);
+    const [educationViewFormData, setEducationViewFromData] = useState(initializeEducationFormData);
+    const [projectViewFormData, setProjectViewFromData] = useState(initializeProjectFormData);
     const menuItem = [
         {
             id: 'home',
@@ -28,22 +61,34 @@ export default function AdminView(){
         {
             id: 'about',
             label: 'About',
-            component: <AdminAboutView />
+            component: <AdminAboutView 
+                formData = {aboutViewFormData}
+                setFormData = {setAboutViewFromData}
+            />
         },
         {
             id: 'education',
             label: 'Education',
-            component: <AdminEducationView />
+            component: <AdminEducationView 
+                formData = {educationViewFormData}
+                setFormData = {setEducationViewFromData}
+            />
         },
         {
             id: 'experience',
             label: 'Experience',
-            component: <AdminExperienceView />
+            component: <AdminExperienceView 
+                formData = {experienceViewFormData}
+                setFormData = {setExperienceViewFromData}
+            />
         },
         {
             id: 'project',
             label: 'Project',
-            component: <AdminProjectView />
+            component: <AdminProjectView 
+                formData = {projectViewFormData}
+                setFormData = {setProjectViewFromData}
+            />
         },
         {
             id: 'contact',

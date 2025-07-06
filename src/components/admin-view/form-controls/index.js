@@ -2,9 +2,9 @@
 export default function FormControls({controls, formData, setFormData}){
     return controls.map(controlItem => 
     <div className="mb-4">
-        <level className='block text-gray-700 text-sm font-bold mb-2'>
+        <div className='block text-gray-900 text-sm font-bold mb-2'>
             {controlItem.label}
-        </level>
+        </div>
         <input 
             placeholder={controlItem.placeholder}
             type={controlItem.type}

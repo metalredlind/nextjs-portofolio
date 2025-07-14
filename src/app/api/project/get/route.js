@@ -4,15 +4,15 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic"
 
-export async function GET(req ) {
+export async function GET(req) {
     try {
         await connectToDB();
         const extractData = await Project.find({});
 
-        if (saveData) {
+        if (extractData) {
             return NextResponse.json({
                 success: true,
-                message: "Data saved succesfully"
+                data: extractData,
             });
         } else {
             return NextResponse.json({

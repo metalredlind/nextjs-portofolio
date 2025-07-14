@@ -9,10 +9,10 @@ export async function GET(req ) {
         await connectToDB();
         const extractData = await Experience.find({});
 
-        if (saveData) {
+        if (extractData) {
             return NextResponse.json({
                 success: true,
-                message: "Data saved succesfully"
+                data: extractData,
             });
         } else {
             return NextResponse.json({

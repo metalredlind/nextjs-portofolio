@@ -24,5 +24,10 @@ export async function POST(req) {
 
     } catch (e) {
         console.log(e);
+
+        return NextResponse.json({
+                    success: false,
+                    message: "Something goes wrong Please try again"
+                });
     }
 }

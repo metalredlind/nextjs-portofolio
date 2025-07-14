@@ -6,6 +6,7 @@ import AdminExperienceView from '@/components/admin-view/experience';
 import AdminProjectView from '@/components/admin-view/project';
 import AdminContactView from '@/components/admin-view/contact';
 import { useState } from 'react';
+import { addData } from '@/services';
 
 const initializeHomeFormData = {
     heading: "",
@@ -56,6 +57,7 @@ export default function AdminView(){
             component: <AdminHomeView 
                 formData = {homeViewFormData}
                 setFormData = {setHomeViewFromData}
+                handleSaveData = {handleSaveData}
             />
         },
         {
@@ -64,6 +66,7 @@ export default function AdminView(){
             component: <AdminAboutView 
                 formData = {aboutViewFormData}
                 setFormData = {setAboutViewFromData}
+                handleSaveData = {handleSaveData}
             />
         },
         {
@@ -72,6 +75,7 @@ export default function AdminView(){
             component: <AdminEducationView 
                 formData = {educationViewFormData}
                 setFormData = {setEducationViewFromData}
+                handleSaveData = {handleSaveData}
             />
         },
         {
@@ -80,6 +84,7 @@ export default function AdminView(){
             component: <AdminExperienceView 
                 formData = {experienceViewFormData}
                 setFormData = {setExperienceViewFromData}
+                handleSaveData = {handleSaveData}
             />
         },
         {
@@ -88,6 +93,7 @@ export default function AdminView(){
             component: <AdminProjectView 
                 formData = {projectViewFormData}
                 setFormData = {setProjectViewFromData}
+                handleSaveData = {handleSaveData}
             />
         },
         {
@@ -97,6 +103,20 @@ export default function AdminView(){
         }
         
     ]
+
+    async function handleSaveData() {
+        const dataMap = {
+            home: homeViewFormData,
+            about: aboutViewFormData,
+            experience: experienceViewFormData,
+            education: educationViewFormData,
+            project: projectViewFormData,
+        };
+
+        const response = await addData(currentSelectedTab, dataMap[currentSelectedTab]);
+
+        console.log(response, "response");
+    }
 
     return  (
         <div className='border-b border-gray-400'>

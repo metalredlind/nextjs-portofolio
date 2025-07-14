@@ -23,7 +23,7 @@ const controls = [
     }
 ]
 
-export default function AdminEducationView({formData, setFormData}){
+export default function AdminEducationView({formData, setFormData, handleSaveData}){
     console.log(formData);
             return (
                 <div className="w-full">
@@ -33,7 +33,7 @@ export default function AdminEducationView({formData, setFormData}){
                         formData={formData}
                         setFormData={setFormData}
                     />
-                    <button className="mt-[5px] border border-blue-600 bg-blue-600 text-white p-3 font-bold text-[16px] focus:bg-blue-400 rounded-md">
+                    <button onClick={()=> handleSaveData('education')} className="mt-[5px] border border-blue-600 bg-blue-600 text-white p-3 font-bold text-[16px] focus:bg-blue-400 rounded-md">
                         Add Education
                     </button>
                     </div>

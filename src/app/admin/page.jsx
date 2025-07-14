@@ -116,6 +116,18 @@ export default function AdminView(){
         const response = await addData(currentSelectedTab, dataMap[currentSelectedTab]);
 
         console.log(response, "response");
+
+        if (response.success) {
+            resetFormData();
+        }
+    }
+
+    function resetFormData(){
+        setHomeViewFromData(initializeHomeFormData);
+        setAboutViewFromData(initializeAboutFormData);
+        setEducationViewFromData(initializeEducationFormData);
+        setExperienceViewFromData(initializeExperienceFormData);
+        setProjectViewFromData(initializeProjectFormData);
     }
 
     return  (
@@ -128,6 +140,7 @@ export default function AdminView(){
                     className='p-4 font-bold text-xl text-black'
                     onClick={()=>{
                         setCurrentSelectedTab(item.id);
+                        resetFormData();
                     }}
                     >
                         {item.label}

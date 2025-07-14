@@ -12,7 +12,7 @@ export async function POST(req ) {
 
         if (saveData) {
             return NextResponse.json({
-                success: true,
+                success: false,
                 message: "Data saved succesfully"
             });
         } else {

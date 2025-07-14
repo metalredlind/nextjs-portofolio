@@ -17,7 +17,7 @@ export async function POST(req) {
             });
         } else {
             return NextResponse.json({
-                success: true,
+                success: false,
                 message: "Something goes wrong Please try again"
             })
         }

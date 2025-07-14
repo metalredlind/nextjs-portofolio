@@ -4,23 +4,31 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic"
 
-export async function GET(req ) {
+export async function PUT(req) {
     try {
         await connectToDB();
-        const extractData = await Home.find({});
+        const extractData = await req.json();
+        const { _id, heading, summary } = extractData;
 
-        if (extractData) {
+        const updateData = await Home.findByIdAndUpdate(
+            {
+                _id: _id
+            },
+            {heading, summary},
+            {new: true}
+        );
+
+        if (updateData) {
             return NextResponse.json({
                 success: true,
-                data: extractData,
+                message: "Data updated succesfully"
             });
-        } else {
+        }else{
             return NextResponse.json({
                 success: false,
                 message: "Something goes wrong Please try again"
-            })
+            });
         }
-
     } catch (e) {
         console.log(e);
 

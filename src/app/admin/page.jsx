@@ -6,7 +6,7 @@ import AdminExperienceView from '@/components/admin-view/experience';
 import AdminProjectView from '@/components/admin-view/project';
 import AdminContactView from '@/components/admin-view/contact';
 import { useEffect, useState } from 'react';
-import { addData, getData } from '@/services';
+import { addData, getData, updateData } from '@/services';
 
 const initializeHomeFormData = {
     heading: "",
@@ -51,7 +51,8 @@ export default function AdminView(){
     const [educationViewFormData, setEducationViewFormData] = useState(initializeEducationFormData);
     const [projectViewFormData, setProjectViewFormData] = useState(initializeProjectFormData);
 
-    const [allData, setAllData] = useState({})
+    const [allData, setAllData] = useState({});
+    const [update, setUpdate] = useState(false);
 
     const menuItem = [
         {
@@ -116,7 +117,9 @@ export default function AdminView(){
             project: projectViewFormData,
         };
 
-        const response = await addData(currentSelectedTab, dataMap[currentSelectedTab]);
+        const response = update ? 
+        await updateData(currentSelectedTab, dataMap[currentSelectedTab]) :
+        await addData(currentSelectedTab, dataMap[currentSelectedTab]);
 
         console.log('API Response:', response);
 
@@ -140,6 +143,7 @@ export default function AdminView(){
             response.data.length
         ) {
             setHomeViewFormData(response && response.data[0]);
+            setUpdate(true);
         }
 
         if (
@@ -149,6 +153,7 @@ export default function AdminView(){
             response.data.length
         ) {
             setAboutViewFormData(response && response.data[0]);
+            setUpdate(true);
         }
 
         if (response?.success) {
@@ -180,6 +185,7 @@ export default function AdminView(){
                     onClick={()=>{
                         setCurrentSelectedTab(item.id);
                         resetFormData();
+                        setUpdate(false);
                     }}
                     >
                         {item.label}

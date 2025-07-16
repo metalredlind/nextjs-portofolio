@@ -6,7 +6,8 @@ import AdminExperienceView from '@/components/admin-view/experience';
 import AdminProjectView from '@/components/admin-view/project';
 import AdminContactView from '@/components/admin-view/contact';
 import { useEffect, useState } from 'react';
-import { addData, getData, updateData } from '@/services';
+import { addData, getData, login, updateData } from '@/services';
+import Login from '@/components/admin-view/login';
 
 const initializeHomeFormData = {
     heading: "",
@@ -42,6 +43,11 @@ const initializeProjectFormData = {
     github: ""
 };
 
+const initializeLoginFormData = {
+    username: "",
+    password: ""
+};
+
 export default function AdminView(){
 
     const [currentSelectedTab, setCurrentSelectedTab] = useState('home');
@@ -53,6 +59,8 @@ export default function AdminView(){
 
     const [allData, setAllData] = useState({});
     const [update, setUpdate] = useState(false);
+    const [authUser, setAuthUser] = useState(false);
+    const [loginFormData, setLoginFormData] = useState(initializeLoginFormData);
 
     const menuItem = [
         {
@@ -176,6 +184,29 @@ export default function AdminView(){
         setExperienceViewFormData(initializeExperienceFormData);
         setProjectViewFormData(initializeProjectFormData);
     }
+
+    async function handleLogin() {
+        const res = await login(loginFormData)
+        console.log(res, "login");
+        if (res?.success) {
+            setAuthUser(true);
+            sessionStorage.setItem("authUser",JSON.stringify(true));
+        }
+    }
+
+    useEffect(()=> {
+        setAuthUser(JSON.parse(sessionStorage.getItem("authUser")))
+    },[]);
+
+    if (!authUser)
+        return (
+            <Login 
+                formData = {loginFormData}
+                setFormData = {setLoginFormData}
+                handleLogin = {handleLogin}
+            />
+        )
+    
 
     return  (
         <div className='border-b border-gray-400'>

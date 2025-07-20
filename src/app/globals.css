@@ -1,6 +1,25 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+/* Custom Colors */
+  --color-black-900: #000000;
+  --color-black-500: #4F5665;
+  --color-black-600: #0B132A;
+  
+  --color-orange-100: #FFECEC;
+  --color-orange-500: #F53855;
+  
+  --color-green-500: #2FAB73;
+  --color-green-main: #0DB760;
+  
+  --color-white-300: #F8F8F8;
+  --color-white-500: #fff;
+  
+  --color-gray-100: #EEEFF2;
+  --color-gray-400: #AFB5C0;
+  --color-gray-500: #DDDDDD;
+  
+  /* Custom Background Images */
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
 }

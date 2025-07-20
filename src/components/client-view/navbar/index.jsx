@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image";
 import logo from "@/assets/logo.png"
 import { Link as LinkScroll, scroller } from "react-scroll";
@@ -37,7 +37,7 @@ function CreateMenus({ activeLink, getMenuItems, setActiveLink }) {
             smooth={true}
             duration={1000}
             onSetActive={()=> setActiveLink(item.id)}
-            className={`px-4 py-2 mx-2 cursor-pointer animation-hove inline-block relative ${activeLink===item.id ? "text-green-main animation-active shadow-green-main" : "text-[#000] font-bold hover:text-green-main"}`}
+            className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative ${activeLink===item.id ? "text-green-main animation-active shadow-green-main" : "text-[#000] font-bold hover:text-green-main"}`}
         >
             {item.label}
         </LinkScroll>
@@ -48,6 +48,12 @@ export default function Navbar() {
     
     const [activeLink, setActiveLink] = useState("home");
     const [scrollActive, setScrollActive] = useState(false);
+
+    useEffect(()=> {
+        window.addEventListener("scroll", ()=>{
+            setScrollActive(window.screenY > 20)
+        })
+    },[])
     
     return (
         <>
@@ -76,8 +82,34 @@ export default function Navbar() {
                         getMenuItems={menuItems}
                     />
                 </ul>
+
+                <div className="col-start-10 col-end-12 flex justify-end">
+                    <button
+                        onClick={()=>
+                            scroller.scrollTo("contact", {
+                                duration: 1500,
+                                delay: 100,
+                                smooth: true
+                            })
+                        } className="py-2 px-5 border-2 border-green-600 text-green-600 font-semibold rounded-full text-xl hover:bg-gray-200 hover:text-white hover:shadow-lg transition-all duration-300 ease-in-out" >
+                        Contact Me
+                    </button>
+
+                </div>
             </nav>
         </header>
+
+        <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t">
+            <div className="bg-white-500 sm:px-3">
+                <ul className="overflow-x-auto flex w-full justify-between items-center text-[#000]">
+                    <CreateMenus 
+                        setActiveLink={setActiveLink}
+                        activeLink={activeLink}
+                        getMenuItems={menuItems}
+                    />
+                </ul>
+            </div>
+        </nav>
         </>
     )
 }

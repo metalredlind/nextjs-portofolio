@@ -61,3 +61,20 @@ export async function login(formData) {
         console.log(e)
     }
 }
+
+export async function handleDelete(id) {
+    try {
+        const response = await fetch(`/api/education/delete`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id})
+        });
+
+        return response.json();
+    } catch (error) {
+        console.log("Error Deleting Item", error);
+        return { success: false, message: "Failed to delete item" };
+    }
+}

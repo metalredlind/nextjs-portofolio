@@ -29,7 +29,6 @@ const skillItemVariant = {
 }
 
 export default function ClientAboutView({data}) {
-    console.log(data, 'ClientAboutView');
 
     const setVariants = useMemo(()=>variants(), []);
     const aboutDataInfo = [

@@ -114,7 +114,9 @@ export default function AdminView(){
         {
             id: 'contact',
             label: 'Contact',
-            component: <AdminContactView />
+            component: <AdminContactView 
+                data = {allData && allData?.contact}
+            />
         }
         
     ]
@@ -131,8 +133,6 @@ export default function AdminView(){
         const response = update ? 
         await updateData(currentSelectedTab, dataMap[currentSelectedTab]) :
         await addData(currentSelectedTab, dataMap[currentSelectedTab]);
-
-        console.log('API Response:', response);
 
         if (response.success) {
             resetFormData();
@@ -175,8 +175,6 @@ export default function AdminView(){
         }
     }
 
-    console.log(allData, homeViewFormData, 'homeViewFormData');
-
     function resetFormData(){
         setHomeViewFormData(initializeHomeFormData);
         setAboutViewFormData(initializeAboutFormData);
@@ -187,7 +185,6 @@ export default function AdminView(){
 
     async function handleLogin() {
         const res = await login(loginFormData)
-        console.log(res, "login");
         if (res?.success) {
             setAuthUser(true);
             sessionStorage.setItem("authUser",JSON.stringify(true));

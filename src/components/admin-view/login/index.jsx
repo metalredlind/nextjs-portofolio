@@ -18,7 +18,6 @@ const controls = [
 ]
 
 export default function Login({formData, setFormData, handleLogin}){
-    console.log(formData);
     return (
         <div className="min-h-screen flex items-center justify-center">
                 <div className="w-full max-w-md bg-slate-400 shadow-lg rounded-lg px-8 pt-6 pb-8">
